@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+        body {
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Lilita One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            background-color: #b1b1b1;
+        }
+
+        main {
+            max-width: 1140px;
+            min-width: 300px;
+            margin: auto;
+            background-color: aliceblue;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo {
+            width: 140px;
+            margin: 0 10px;
+        }
+
+        .nav-topo ul {
+            background-color: black;
+            color: white;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .nav-topo ul li {
+            padding: 0 15px;
+        }
+
+        .nav-topo ul li a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .nav-topo ul li a:hover {
+            color: rgb(155, 155, 155);
+        }
+
+        .nav {
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            background-image: linear-gradient(white, antiquewhite);
+        }
+
+        .nav-content {
+            max-width: 1140px;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            /* padding: 10px 20px; */
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav ul li a {
+            position: relative;
+            display: inline-block;
+            padding: 25px 40px;
+            color: black;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all .5s;
+        }
+
+        .nav ul li a:hover {
+            color: #444;
+        }
+
+        .nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #000; /* cor da linha */
+            transition: all .5s;
+            transform: translateX(-50%);
+        }
+
+        .nav ul li a:hover::after {
+            width: 100%;
+        }
+
+
+
+
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 20px;
+        }
+
+        .menu-toggle div {
+            width: 30px;
+            height: 4px;
+            background-color: black;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            background-color: #222;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 1000;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 15px 25px;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #444;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Responsivo */
+        @media screen and (max-width: 800px) {
+            .nav ul {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .logo {
+                margin: 5px 10px;
+                display: block;
+            }
+        }
+
+
+
+
+    </style>
+
+</head>
+<body>
+    <main>
+        <nav class="nav-topo">
+            <ul>
+                <li><a href="">Contato</a></li>
+                <li><a href="">Sobre</a></li>
+                <li><a href="">Política de Privacidade</a></li>
+            </ul>
+        </nav>
+
+        <nav class="nav">
+            <div class="nav-content">
+                <a href="#">
+                    <img src="logo2.png" alt="" class="logo">
+                </a>
+
+                <ul>
+                    <li><a href="">Início</a></li>
+                    <li><a href="">Notícias</a></li>
+                    <li><a href="">Vídeos</a></li>
+                    <li><a href="">Sorteios</a></li>
+                </ul>
+
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidebar" id="sidebar">
+            <a href=""><img src="logo2.png" alt="" class="logo"></a>
+            <a href="">Início</a>
+            <a href="">Notícias</a>
+            <a href="">Vídeos</a>
+            <a href="">Sorteios</a>
+            <a href="">Contato</a>
+            <a href="">Sobre</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+
+    </main>
+
+    <script>
+        function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("show");
+        }
+    </script>
+
+</body>
+</html>
